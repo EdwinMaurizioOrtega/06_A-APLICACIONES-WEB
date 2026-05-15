@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Página Personal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="contenedor">
+    <h1>Mi Página Personal</h1>
+
+    <img src="https://qrcgcustomers.s3-eu-west-1.amazonaws.com/account36205669/57390008_3.png" alt="Foto de perfil" width="150">
+
+    <h2>Información Personal</h2>
+
+    <p><strong>Nombres:</strong> Edwin Maurizio</p>
+    <p><strong>Apellidos:</strong> Ortega Ochoa</p>
+    <p><strong>Cédula:</strong> 0106678568</p>
+    <p><strong>Correo:</strong> edwinoo68@uniandes.edu.ec</p>
+    <p><strong>Teléfono:</strong> 0980151017</p>
+    <p><strong>Ciudad:</strong> Loja, Ecuador</p>
+    <p><strong>Materia:</strong> Aplicaciones Web</p>
+
+    <h2>Sobre mí</h2>
+
+    <p>Me gusta el desarrollo web, la programación y aprender nuevas tecnologías.</p>
+
+    <h2>Calculadora</h2>
+
+    <div class="calculadora">
+        <div class="pantalla">
+            <div id="pantalla">0</div>
+        </div>
+        <div class="botones">
+            <button class="boton-accion" data-accion="limpiar">C</button>
+            <button class="boton-accion" data-accion="borrar">⌫</button>
+            <button class="boton-operador" data-operador="/">÷</button>
+            <button class="boton-operador" data-operador="*">×</button>
+
+            <button class="boton-numero" data-numero="7">7</button>
+            <button class="boton-numero" data-numero="8">8</button>
+            <button class="boton-numero" data-numero="9">9</button>
+            <button class="boton-operador" data-operador="-">−</button>
+
+            <button class="boton-numero" data-numero="4">4</button>
+            <button class="boton-numero" data-numero="5">5</button>
+            <button class="boton-numero" data-numero="6">6</button>
+            <button class="boton-operador" data-operador="+">+</button>
+
+            <button class="boton-numero" data-numero="1">1</button>
+            <button class="boton-numero" data-numero="2">2</button>
+            <button class="boton-numero" data-numero="3">3</button>
+            <button class="boton-igual" data-accion="calcular">=</button>
+
+            <button class="boton-numero cero" data-numero="0">0</button>
+            <button class="boton-numero" data-accion="decimal">.</button>
+        </div>
+    </div>
+</div>
+
+<script src="calculadora.js"></script>
+
+</body>
+</html>
