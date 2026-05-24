@@ -1,55 +1,34 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using WebApplication2.Data;
 using WebApplication2.Models;
 
 namespace WebApplication2.Controllers
 {
     public class ClientesController : Controller
     {
-        // Simular una base de datos
-        private static List<ClienteModel> _lista_Clientes = new List<ClienteModel>()
+        private readonly AppDbContext _context;
+
+        public ClientesController(AppDbContext context)
         {
-            new ClienteModel
-            {
-                id = 1,
-                Nombres_Cliente = "Edwin Maurizio",
-                Apellidos = "Ortega Ochoa",
-                Cedula = "1723456789",
-                Direccion = "Cuenca",
-                Telefono = "0980151017",
-                Correo = "edwin.maurizio.ortega@gmail.com"
-            },
-            new ClienteModel
-            {
-                id = 2,
-                Nombres_Cliente = "Fernando Manuel",
-                Apellidos = "Ortiz Llerena",
-                Cedula = "1723456780",
-                Direccion = "Quito",
-                Telefono = "0999999999",
-                Correo = "fernando.ortiz@gmail.com"
-            },
-            new ClienteModel
-            {
-                id = 3,
-                Nombres_Cliente = "Maria Fernanda",
-                Apellidos = "Gomez Perez",
-                Cedula = "1723456781",
-                Direccion = "Guayaquil",
-                Telefono = "0988888888",
-                Correo = "maria.gomez@gmail.com"
-            }
-        };
+            _context = context;
+        }
 
         // GET: Clientes
-        public ActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View(_lista_Clientes.OrderBy(c => c.Apellidos));
+            var clientes = await _context.ClienteModels
+                .OrderBy(c => c.Apellidos)
+                .ToListAsync();
+
+            return View(clientes);
         }
 
         // GET: Clientes/Details/5
-        public ActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            var cliente = _lista_Clientes.FirstOrDefault(c => c.id == id);
+            var cliente = await _context.ClienteModels
+                .FirstOrDefaultAsync(c => c.id == id);
 
             if (cliente == null)
                 return NotFound();
@@ -58,7 +37,7 @@ namespace WebApplication2.Controllers
         }
 
         // GET: Clientes/Create
-        public ActionResult Create()
+        public IActionResult Create()
         {
             return View();
         }
@@ -66,16 +45,12 @@ namespace WebApplication2.Controllers
         // POST: Clientes/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ClienteModel cliente)
+        public async Task<IActionResult> Create(ClienteModel cliente)
         {
-                    
             if (ModelState.IsValid)
             {
-                cliente.id = _lista_Clientes.Count > 0
-                    ? _lista_Clientes.Max(c => c.id) + 1
-                    : 1;
-
-                _lista_Clientes.Add(cliente);
+                _context.ClienteModels.Add(cliente);
+                await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));
             }
@@ -84,9 +59,9 @@ namespace WebApplication2.Controllers
         }
 
         // GET: Clientes/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            var cliente = _lista_Clientes.FirstOrDefault(c => c.id == id);
+            var cliente = await _context.ClienteModels.FindAsync(id);
 
             if (cliente == null)
                 return NotFound();
@@ -97,7 +72,7 @@ namespace WebApplication2.Controllers
         // POST: Clientes/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, ClienteModel cliente)
+        public async Task<IActionResult> Edit(int id, ClienteModel cliente)
         {
             if (id != cliente.id)
                 return BadRequest("No se encontró el cliente");
@@ -105,25 +80,20 @@ namespace WebApplication2.Controllers
             if (!ModelState.IsValid)
                 return View(cliente);
 
-            var clienteExistente = _lista_Clientes.FirstOrDefault(c => c.id == id);
-
-            if (clienteExistente == null)
+            if (!await _context.ClienteModels.AnyAsync(c => c.id == id))
                 return NotFound();
 
-            clienteExistente.Nombres_Cliente = cliente.Nombres_Cliente;
-            clienteExistente.Apellidos = cliente.Apellidos;
-            clienteExistente.Cedula = cliente.Cedula;
-            clienteExistente.Direccion = cliente.Direccion;
-            clienteExistente.Telefono = cliente.Telefono;
-            clienteExistente.Correo = cliente.Correo;
+            _context.Update(cliente);
+            await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
         }
 
         // GET: Clientes/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var cliente = _lista_Clientes.FirstOrDefault(c => c.id == id);
+            var cliente = await _context.ClienteModels
+                .FirstOrDefaultAsync(c => c.id == id);
 
             if (cliente == null)
                 return NotFound();
@@ -135,14 +105,15 @@ namespace WebApplication2.Controllers
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var cliente = _lista_Clientes.FirstOrDefault(c => c.id == id);
+            var cliente = await _context.ClienteModels.FindAsync(id);
 
             if (cliente == null)
                 return NotFound();
 
-            _lista_Clientes.Remove(cliente);
+            _context.ClienteModels.Remove(cliente);
+            await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
         }
