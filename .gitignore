@@ -1,3 +1,5 @@
+.gitignore
+
 /Semana 2 - Tarea 1/WebApplication2/obj/
 /Semana 2 - Tarea 1/WebApplication2/bin/
 /Semana 2 - Tarea 1/WebApplication2/*.user
@@ -9,3 +11,18 @@
 /Semana 2 - Tarea 1/WebApplication2/TestResults/
 /Semana 2 - Tarea 1/WebApplication2/*.nupkg
 /Semana 2 - Tarea 1/WebApplication2/*.snupkg
+
+/Semana_3_Tarea_1/WebApplication3/obj/
+/Semana_3_Tarea_1/WebApplication3/bin/
+
+/Semana_4_Tarea_1/PlacardModaCircular/obj/
+/Semana_4_Tarea_1/PlacardModaCircular/bin/
+/Semana_4_Tarea_1/PlacardModaCircular/*.user
+/Semana_4_Tarea_1/PlacardModaCircular/*.suo
+/Semana_4_Tarea_1/PlacardModaCircular/*.userosscache
+/Semana_4_Tarea_1/PlacardModaCircular/*.sln.docstates
+/Semana_4_Tarea_1/PlacardModaCircular/.vs/
+/Semana_4_Tarea_1/PlacardModaCircular/.vscode/
+/Semana_4_Tarea_1/PlacardModaCircular/TestResults/
+/Semana_4_Tarea_1/PlacardModaCircular/*.nupkg
+/Semana_4_Tarea_1/PlacardModaCircular/*.snupkg  

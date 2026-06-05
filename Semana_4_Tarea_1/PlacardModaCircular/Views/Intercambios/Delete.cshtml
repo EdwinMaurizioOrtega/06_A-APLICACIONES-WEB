@@ -1,0 +1,31 @@
+@model PlacardModaCircular.Models.Intercambios
+
+@{
+    ViewData["Title"] = "Eliminar Intercambio";
+}
+
+<h1>Eliminar</h1>
+
+<h3>¿Está seguro que desea eliminar este intercambio?</h3>
+<div>
+    <h4>Intercambio</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Mensaje)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Mensaje)</dd>
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.FechaIntercambio)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.FechaIntercambio)</dd>
+        <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Estado)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Estado)</dd>
+        <dt class="col-sm-2">Ofertante</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Usuarios.NombreCompleto)</dd>
+        <dt class="col-sm-2">Publicación</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Publicaciones.Descripcion)</dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <a asp-action="Index">Volver a la lista</a>
+    </form>
+</div>

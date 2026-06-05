@@ -1,0 +1,39 @@
+@model IEnumerable<PlacardModaCircular.Models.Intercambios>
+
+@{
+    ViewData["Title"] = "Intercambios";
+}
+
+<h1>Intercambios</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Nuevo Intercambio</a>
+</p>
+<table class="table table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Mensaje)</th>
+            <th>@Html.DisplayNameFor(model => model.FechaIntercambio)</th>
+            <th>@Html.DisplayNameFor(model => model.Estado)</th>
+            <th>Ofertante</th>
+            <th>Publicación</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.Mensaje)</td>
+            <td>@Html.DisplayFor(modelItem => item.FechaIntercambio)</td>
+            <td>@Html.DisplayFor(modelItem => item.Estado)</td>
+            <td>@Html.DisplayFor(modelItem => item.Usuarios.NombreCompleto)</td>
+            <td>@Html.DisplayFor(modelItem => item.Publicaciones.Descripcion)</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Editar</a>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Detalles</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
