@@ -1,0 +1,153 @@
+<div class="container my-5">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+      <h5 class="mb-0"><i class="bi bi-plus-circle"></i> Nueva Prenda</h5>
+      <a class="btn btn-light btn-sm" routerLink="/">
+        <i class="bi bi-arrow-left"></i> Volver
+      </a>
+    </div>
+    <div class="card-body">
+      <form #formPrenda="ngForm" (ngSubmit)="guardar()">
+        <div class="row g-3">
+          <!-- Título -->
+          <div class="col-md-6">
+            <label for="titulo" class="form-label">Título <span class="text-danger">*</span></label>
+            <input
+              type="text"
+              class="form-control"
+              id="titulo"
+              name="titulo"
+              [(ngModel)]="modelo.titulo"
+              required
+            />
+          </div>
+
+          <!-- Categoría -->
+          <div class="col-md-3">
+            <label for="categoria" class="form-label">Categoría</label>
+            <select class="form-select" id="categoria" name="categoria" [(ngModel)]="modelo.categoria">
+              <option value="">Seleccione...</option>
+              <option value="Ropa de mujer">Ropa de mujer</option>
+              <option value="Ropa de hombre">Ropa de hombre</option>
+              <option value="Ropa infantil">Ropa infantil</option>
+              <option value="Accesorios">Accesorios</option>
+              <option value="Calzado">Calzado</option>
+              <option value="Deportivo">Deportivo</option>
+              <option value="Formal">Formal</option>
+              <option value="Casual">Casual</option>
+            </select>
+          </div>
+
+          <!-- Marca -->
+          <div class="col-md-3">
+            <label for="marca" class="form-label">Marca</label>
+            <input type="text" class="form-control" id="marca" name="marca" [(ngModel)]="modelo.marca" />
+          </div>
+
+          <!-- Descripción -->
+          <div class="col-12">
+            <label for="descripcion" class="form-label">Descripción</label>
+            <textarea
+              class="form-control"
+              id="descripcion"
+              name="descripcion"
+              rows="2"
+              [(ngModel)]="modelo.descripcion"
+            ></textarea>
+          </div>
+
+          <!-- Talla -->
+          <div class="col-md-2">
+            <label for="talla" class="form-label">Talla</label>
+            <select class="form-select" id="talla" name="talla" [(ngModel)]="modelo.talla">
+              <option value="">Seleccione...</option>
+              <option value="XS">XS</option>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+              <option value="XXL">XXL</option>
+              <option value="Única">Única</option>
+            </select>
+          </div>
+
+          <!-- Color -->
+          <div class="col-md-2">
+            <label for="color" class="form-label">Color</label>
+            <input type="text" class="form-control" id="color" name="color" [(ngModel)]="modelo.color" />
+          </div>
+
+          <!-- Estado Prenda -->
+          <div class="col-md-2">
+            <label for="estado_prenda" class="form-label">Estado</label>
+            <select class="form-select" id="estado_prenda" name="estado_prenda" [(ngModel)]="modelo.estado_prenda">
+              <option value="nuevo">Nuevo</option>
+              <option value="usado">Usado</option>
+              <option value="buen estado">Buen estado</option>
+            </select>
+          </div>
+
+          <!-- Tipo Publicación -->
+          <div class="col-md-3">
+            <label for="tipo_publicacion" class="form-label">Tipo de publicación</label>
+            <select class="form-select" id="tipo_publicacion" name="tipo_publicacion" [(ngModel)]="modelo.tipo_publicacion">
+              <option value="venta">Venta</option>
+              <option value="intercambio">Intercambio</option>
+              <option value="donacion">Donación</option>
+            </select>
+          </div>
+
+          <!-- Precio -->
+          <div class="col-md-3">
+            <label for="precio" class="form-label">Precio $</label>
+            <input
+              type="number"
+              class="form-control"
+              id="precio"
+              name="precio"
+              step="0.01"
+              min="0"
+              [(ngModel)]="modelo.precio"
+            />
+          </div>
+
+          <!-- Ciudad -->
+          <div class="col-md-4">
+            <label for="ciudad" class="form-label">Ciudad</label>
+            <input type="text" class="form-control" id="ciudad" name="ciudad" [(ngModel)]="modelo.ciudad" />
+          </div>
+
+          <!-- Sector -->
+          <div class="col-md-4">
+            <label for="sector" class="form-label">Sector</label>
+            <input type="text" class="form-control" id="sector" name="sector" [(ngModel)]="modelo.sector" />
+          </div>
+
+          <!-- Disponible -->
+          <div class="col-md-4 d-flex align-items-center pt-4">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="disponible"
+                name="disponible"
+                [(ngModel)]="modelo.disponible"
+              />
+              <label class="form-check-label" for="disponible">Prenda disponible</label>
+            </div>
+          </div>
+        </div>
+
+        <hr class="my-4" />
+        <div class="d-flex gap-2">
+          <button type="submit" class="btn btn-primary" [disabled]="!formPrenda.form.valid">
+            <i class="bi bi-floppy"></i> Guardar
+          </button>
+          <a class="btn btn-secondary" routerLink="/">
+            <i class="bi bi-x-circle"></i> Cancelar
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

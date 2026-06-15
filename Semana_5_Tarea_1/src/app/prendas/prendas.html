@@ -1,0 +1,82 @@
+<div class="container my-5">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+      <h5 class="mb-0">Listado de Prendas</h5>
+      <button class="btn btn-light btn-sm" routerLink="/insertar">
+        <i class="bi bi-plus-lg"></i> Nueva Prenda
+      </button>
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-hover table-striped mb-0 align-middle">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col" style="width: 5%;">ID</th>
+              <th scope="col" style="width: 18%;">Título</th>
+              <th scope="col" style="width: 12%;">Categoría</th>
+              <th scope="col" style="width: 10%;">Marca</th>
+              <th scope="col" style="width: 8%;">Talla</th>
+              <th scope="col" style="width: 8%;">Color</th>
+              <th scope="col" style="width: 8%;">Precio</th>
+              <th scope="col" style="width: 10%;">Ciudad</th>
+              <th scope="col" style="width: 8%;">Estado</th>
+              <th scope="col" style="width: 13%;" class="text-center">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            @if (lista.length > 0) {
+              @for (prenda of lista; track prenda.id_prenda) {
+                <tr>
+                  <th scope="row" class="text-muted">{{ prenda.id_prenda }}</th>
+                  <td class="fw-bold">{{ prenda.titulo }}</td>
+                  <td><span class="badge bg-info text-dark">{{ prenda.categoria }}</span></td>
+                  <td>{{ prenda.marca }}</td>
+                  <td><span class="badge bg-secondary">{{ prenda.talla }}</span></td>
+                  <td>
+                    <span
+                      class="badge"
+                      [style.background]="prenda.color"
+                      [style.color]="prenda.color ? '#fff' : 'inherit'"
+                    >
+                      {{ prenda.color }}
+                    </span>
+                  </td>
+                  <td class="fw-semibold">
+                    @if (prenda.precio) {
+                      ${{ prenda.precio.toFixed(2) }}
+                    }
+                  </td>
+                  <td>{{ prenda.ciudad }}</td>
+                  <td>
+                    <span
+                      class="badge"
+                      [class.bg-success]="prenda.estado_publicacion === 'activa'"
+                      [class.bg-warning]="prenda.estado_publicacion === 'pendiente'"
+                      [class.bg-secondary]="prenda.estado_publicacion === 'inactiva'"
+                    >
+                      {{ prenda.estado_publicacion }}
+                    </span>
+                  </td>
+                  <td class="text-center">
+                    <div class="btn-group" role="group">
+                      <button type="button" class="btn btn-outline-warning btn-sm" title="Editar" routerLink="/editar">
+                        <i class="bi bi-pencil"></i>
+                      </button>
+                      <button type="button" class="btn btn-outline-danger btn-sm" title="Eliminar" routerLink="/eliminar">
+                        <i class="bi bi-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              }
+            } @else {
+              <tr>
+                <td colspan="10" class="text-center text-muted py-4">No hay Prendas</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
