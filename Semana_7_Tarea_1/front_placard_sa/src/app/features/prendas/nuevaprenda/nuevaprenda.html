@@ -1,0 +1,103 @@
+<div class="container mt-4">
+  <div class="card shadow">
+    <div class="card-header bg-success text-white">
+      <h4 class="mb-0">➕ Nueva Prenda - Moda Circular</h4>
+    </div>
+
+    <div class="card-body">
+      <form [formGroup]="frmPrenda" novalidate (submit)="grabar()">
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label class="form-label">Código</label>
+            <input type="text" class="form-control" placeholder="Ej: PRE-001" formControlName="codigo" />
+            @if (frmPrenda.get('codigo')?.hasError('required') && frmPrenda.get('codigo')?.touched) {
+              <small class="text-danger">El código es obligatorio.</small>
+            }
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label class="form-label">Nombre de la Prenda</label>
+            <input type="text" class="form-control" placeholder="Ej: Vestido Floral" formControlName="nombre" />
+            @if (frmPrenda.get('nombre')?.hasError('required') && frmPrenda.get('nombre')?.touched) {
+              <small class="text-danger">El nombre es obligatorio.</small>
+            }
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label class="form-label">Categoría</label>
+            <select class="form-control" formControlName="categoria">
+              <option value="">Seleccione...</option>
+              <option>Vestidos</option>
+              <option>Chaquetas</option>
+              <option>Blusas</option>
+              <option>Camisetas</option>
+              <option>Pantalones</option>
+              <option>Faldas</option>
+              <option>Accesorios</option>
+              <option>Calzado</option>
+              <option>Otra</option>
+            </select>
+          </div>
+
+          <div class="col-md-3 mb-3">
+            <label class="form-label">Talla</label>
+            <select class="form-control" formControlName="talla">
+              <option value="">Seleccione...</option>
+              <option>XS</option>
+              <option>S</option>
+              <option>M</option>
+              <option>L</option>
+              <option>XL</option>
+              <option>XXL</option>
+              <option>Única</option>
+            </select>
+          </div>
+
+          <div class="col-md-3 mb-3">
+            <label class="form-label">Color</label>
+            <input type="text" class="form-control" placeholder="Ej: Azul" formControlName="color" />
+          </div>
+
+          <div class="col-md-3 mb-3">
+            <label class="form-label">Material</label>
+            <input type="text" class="form-control" placeholder="Ej: Algodón Orgánico" formControlName="material" />
+          </div>
+
+          <div class="col-md-3 mb-3">
+            <label class="form-label">Precio ($)</label>
+            <input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" formControlName="precio" />
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label class="form-label">Estado</label>
+            <select class="form-control" formControlName="estado">
+              <option>Disponible</option>
+              <option>Reservado</option>
+              <option>Vendido</option>
+            </select>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label class="form-label">Ubicación (Geolocalización)</label>
+            <input type="text" class="form-control" placeholder="Ej: Cuenca - Centro" formControlName="ubicacion" />
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label class="form-label">Vendedor</label>
+            <input type="text" class="form-control" placeholder="Nombre del vendedor" formControlName="vendedor" />
+          </div>
+
+          <div class="col-12 mb-3">
+            <label class="form-label">Descripción</label>
+            <textarea class="form-control" rows="2" placeholder="Breve descripción de la prenda" formControlName="descripcion"></textarea>
+          </div>
+        </div>
+
+        <div class="d-flex gap-2">
+          <button type="submit" class="btn btn-success" [disabled]="frmPrenda.invalid">💾 Guardar Prenda</button>
+          <button type="button" class="btn btn-secondary" routerLink="/prendas">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

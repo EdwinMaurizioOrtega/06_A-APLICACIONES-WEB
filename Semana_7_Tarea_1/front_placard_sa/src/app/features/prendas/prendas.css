@@ -1,0 +1,41 @@
+.custom-table-container {
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #ffffff;
+  border: 1px solid #eef2f5;
+}
+
+.custom-table {
+  font-size: 0.9rem;
+  vertical-align: middle;
+}
+
+.custom-table thead tr {
+  background-color: #0b111e;
+  color: #ffffff;
+}
+
+.custom-table th {
+  font-weight: 600;
+  padding: 16px 20px;
+  letter-spacing: 0.5px;
+  border-bottom: none;
+}
+
+.custom-table tbody td, 
+.custom-table tbody th {
+  padding: 16px 20px;
+  color: #495057;
+  border-bottom: 1px solid #f1f3f5;
+  transition: background-color 0.2s ease;
+}
+
+.custom-table tbody tr:hover td,
+.custom-table tbody tr:hover th {
+  background-color: #f8fafd;
+  color: #111111;
+}
+
+.bg-dark-elegant {
+  background-color: #0b111e !important;
+}

@@ -1,0 +1,28 @@
+<div class="container mt-4">
+  <div class="card shadow">
+    <div class="card-header bg-danger text-white">
+      <h4 class="mb-0">🗑️ Eliminar Prenda</h4>
+    </div>
+
+    <div class="card-body text-center">
+      @if (prenda) {
+        <div class="mb-4">
+          <h5>¿Está seguro de eliminar esta prenda?</h5>
+          <p class="mb-1"><strong>Código:</strong> {{ prenda.codigo }}</p>
+          <p class="mb-1"><strong>Nombre:</strong> {{ prenda.nombre }}</p>
+          <p class="mb-1"><strong>Categoría:</strong> {{ prenda.categoria }}</p>
+          <p class="mb-1"><strong>Precio:</strong> ${{ prenda.precio.toFixed(2) }}</p>
+          <p class="mb-1"><strong>Vendedor:</strong> {{ prenda.vendedor }}</p>
+          <p class="mb-1"><strong>Ubicación:</strong> {{ prenda.ubicacion }}</p>
+        </div>
+
+        <div class="d-flex justify-content-center gap-2">
+          <button class="btn btn-danger" (click)="eliminar()">🗑️ Sí, Eliminar</button>
+          <button class="btn btn-secondary" routerLink="/prendas">Cancelar</button>
+        </div>
+      } @else {
+        <p>Cargando datos de la prenda...</p>
+      }
+    </div>
+  </div>
+</div>

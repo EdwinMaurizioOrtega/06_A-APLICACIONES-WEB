@@ -1,0 +1,68 @@
+<div class="container mt-4">
+  <div class="card shadow">
+    <div class="card-header bg-dark-elegant text-white d-flex justify-content-between align-items-center">
+      <h4 class="mb-0">🧥 Catálogo de Prendas - Moda Circular</h4>
+      <div>
+        <button class="btn btn-light btn-sm me-2" routerLink="/nuevaprenda">
+          ➕ Nueva Prenda
+        </button>
+        <button class="btn btn-danger btn-sm" (click)="exportarPDF()">
+          📄 Exportar PDF
+        </button>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <div class="table-responsive custom-table-container">
+        <table class="table table-hover custom-table mb-0">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Código</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Categoría</th>
+              <th scope="col">Talla</th>
+              <th scope="col">Color</th>
+              <th scope="col">Precio</th>
+              <th scope="col">Estado</th>
+              <th scope="col">Ubicación</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (prenda of listaPrendas; track prenda.id; let i = $index) {
+            <tr>
+              <td>{{ i + 1 }}</td>
+              <td><span class="badge bg-secondary">{{ prenda.codigo }}</span></td>
+              <td class="fw-semibold">{{ prenda.nombre }}</td>
+              <td>{{ prenda.categoria }}</td>
+              <td>{{ prenda.talla }}</td>
+              <td>{{ prenda.color }}</td>
+              <td class="fw-bold text-success">${{ prenda.precio.toFixed(2) }}</td>
+              <td>
+                <span class="badge"
+                  [class.bg-success]="prenda.estado === 'Disponible'"
+                  [class.bg-warning]="prenda.estado === 'Reservado'"
+                  [class.bg-secondary]="prenda.estado === 'Vendido'">
+                  {{ prenda.estado }}
+                </span>
+              </td>
+              <td><small>{{ prenda.ubicacion }}</small></td>
+              <td>
+                <button class="btn btn-outline-primary btn-sm me-1" [routerLink]="['/editarprenda', prenda.id]">✏️</button>
+                <button class="btn btn-outline-danger btn-sm" [routerLink]="['/eliminarprenda', prenda.id]">🗑️</button>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      @if (listaPrendas.length === 0) {
+        <div class="text-center py-4 text-muted">
+          <p>No hay prendas registradas.</p>
+        </div>
+      }
+    </div>
+  </div>
+</div>
